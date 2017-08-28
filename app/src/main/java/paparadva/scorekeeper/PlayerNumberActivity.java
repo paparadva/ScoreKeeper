@@ -35,7 +35,7 @@ public class PlayerNumberActivity extends AppCompatActivity {
                     data.putExtra(Intent.EXTRA_RETURN_RESULT, playerNum);
                     setResult(RESULT_OK, data);
                     finish();
-                } catch (Exception e) {
+                } catch (IllegalArgumentException e) {
                     mTextError.setVisibility(View.VISIBLE);
                 }
             }
