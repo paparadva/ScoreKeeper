@@ -7,6 +7,9 @@ import android.widget.Toast;
 
 public class LauncherActivity extends AppCompatActivity {
     private static final int REQUEST_PLAYER_NUMBER = 0;
+    private static final int REQUEST_PLAYER_NAMES = 0;
+
+    public static final String EXTRA_PLAYER_NUMBER = "paparadva.scorekeeper.PLAYER_NUMBER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,11 @@ public class LauncherActivity extends AppCompatActivity {
             switch(requestCode) {
                 case REQUEST_PLAYER_NUMBER: {
                     int playerNum = data.getIntExtra(Intent.EXTRA_RETURN_RESULT, 0);
+
+                    Intent getNames = new Intent(this, PlayerNamesActivity.class);
+                    getNames.putExtra(EXTRA_PLAYER_NUMBER, playerNum);
+
+                    startActivityForResult(getNames, REQUEST_PLAYER_NAMES);
                 }
             }
         }
