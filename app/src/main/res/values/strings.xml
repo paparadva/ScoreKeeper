@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Score Keeper</string>
-    <string name="title_activity_players_number">PlayersNumberActivity</string>
+
+    <string name="title_activity_players_number">Enter number of players</string>
+    <string name="negative_number_of_players_error">Wrong number of players</string>
 </resources>
