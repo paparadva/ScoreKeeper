@@ -40,8 +40,10 @@ public class LauncherActivity extends AppCompatActivity {
                     break;
                 }
                 case REQUEST_PLAYER_NAMES: {
-                    ArrayList<String> names = data.getStringArrayListExtra(EXTRA_PLAYER_NAMES);
-                    Log.d(TAG, names.toString());
+                    Intent startScores = new Intent(this, ScoresActivity.class);
+                    startScores.fillIn(data, Intent.FILL_IN_DATA);
+                    startActivity(startScores);
+                    finish();
                     break;
                 }
             }
