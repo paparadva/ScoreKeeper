@@ -27,6 +27,10 @@
         <activity
             android:name=".ScoresActivity"
             android:label="@string/title_activity_scores"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UpdateScoresActivity"
+            android:label="@string/title_activity_update_scores"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_update_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:labelFor="@+id/et_score_delta"
+        tools:text="Johnny"/>
+
+    <LinearLayout
+        android:id="@+id/button_row_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btn_minus_ten"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_10"
+            android:tag="-10"/>
+
+        <Button
+            android:id="@+id/btn_minus_five"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_5"
+            android:tag="-5"/>
+
+        <Button
+            android:id="@+id/btn_minus_one"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minus_1"
+            android:tag="-1"/>
+
+        <EditText
+            android:id="@+id/et_score_delta"
+            android:layout_width="@dimen/score_delta_width"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:inputType="number"
+            tools:text="-35"/>
+
+        <Button
+            android:id="@+id/btn_plus_one"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_1"
+            android:tag="1"/>
+
+        <Button
+            android:id="@+id/btn_plus_five"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_5"
+            android:tag="5"/>
+
+        <Button
+            android:id="@+id/btn_plus_ten"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/plus_10"
+            android:tag="10"/>
+
+    </LinearLayout>
+
+</LinearLayout>

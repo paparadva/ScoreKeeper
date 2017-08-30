@@ -1,11 +1,11 @@
 package paparadva.scorekeeper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -13,9 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import paparadva.scorekeeper.model.PlayerScore;
+
 public class ScoresActivity extends AppCompatActivity {
+    public static final String EXTRA_CURRENT_SCORES = "paparadva.scorekeeper.CURRENT_SCORES";
+
+    private static final int REQUEST_UPDATE_SCORES = 0;
+    private List<List<PlayerScore>> mScores;
+    private ScoresAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +33,8 @@ public class ScoresActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        List<String> players = getIntent().getStringArrayListExtra(
-                LauncherActivity.EXTRA_PLAYER_NAMES);
+        mScores = new ArrayList<>();
+        mScores.add(createInitialScores());
 
         RecyclerView scores = (RecyclerView) findViewById(R.id.rv_current_scores);
         scores.setHasFixedSize(true);
@@ -33,23 +42,53 @@ public class ScoresActivity extends AppCompatActivity {
         GridLayoutManager lm = new GridLayoutManager(this, 3);
         scores.setLayoutManager(lm);
 
-        ScoresAdapter adapter = new ScoresAdapter(players);
-        scores.setAdapter(adapter);
+        mAdapter = new ScoresAdapter(getLastRoundScores());
+        scores.setAdapter(mAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_scores);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Update scores", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showUpdateScores();
             }
         });
     }
 
+    private List<PlayerScore> getLastRoundScores() {
+        return mScores.get(mScores.size()-1);
+    }
+
+    private List<PlayerScore> createInitialScores() {
+        List<String> playerNames = getIntent().getStringArrayListExtra(
+                LauncherActivity.EXTRA_PLAYER_NAMES);
+
+        List<PlayerScore> zeroScores = new ArrayList<>();
+        for(String name : playerNames) {
+            zeroScores.add(new PlayerScore(name, 0));
+        }
+
+        return zeroScores;
+    }
+
+    private void showUpdateScores() {
+        Intent updateScores = new Intent(this, UpdateScoresActivity.class);
+        updateScores.putExtra(EXTRA_CURRENT_SCORES, (Serializable) getLastRoundScores());
+        startActivityForResult(updateScores, REQUEST_UPDATE_SCORES);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == REQUEST_UPDATE_SCORES) {
+            List<PlayerScore> newScores =
+                    (List<PlayerScore>) data.getSerializableExtra(EXTRA_CURRENT_SCORES);
+            mScores.add(newScores);
+            mAdapter.setScoreData(getLastRoundScores());
+        }
+    }
 }
 
 class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoreViewHolder> {
-    private List<String> mPlayers;
+    private List<PlayerScore> mScores;
 
     static class ScoreViewHolder extends RecyclerView.ViewHolder {
         private TextView nameView;
@@ -67,13 +106,18 @@ class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoreViewHolder> 
         }
     }
 
-    ScoresAdapter(List<String> players) {
-        mPlayers = players;
+    ScoresAdapter(List<PlayerScore> scores) {
+        mScores = scores;
+    }
+
+    void setScoreData(List<PlayerScore> scores) {
+        mScores = scores;
+        notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
-        return mPlayers.size();
+        return mScores.size();
     }
 
     @Override
@@ -85,6 +129,7 @@ class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoreViewHolder> 
 
     @Override
     public void onBindViewHolder(ScoreViewHolder holder, int position) {
-        holder.bind(mPlayers.get(position), 340); //placeholder score
+        PlayerScore score = mScores.get(position);
+        holder.bind(score.getName(), score.getScore());
     }
 }
