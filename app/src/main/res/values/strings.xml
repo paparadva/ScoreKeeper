@@ -3,4 +3,7 @@
 
     <string name="title_activity_players_number">Enter number of players</string>
     <string name="negative_number_of_players_error">Wrong number of players</string>
+
+    <string name="title_activity_player_names">Enter players\' names</string>
+    <string name="enter_name_label">Player %d</string>
 </resources>
