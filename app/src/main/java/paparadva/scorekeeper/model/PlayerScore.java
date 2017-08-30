@@ -11,8 +11,8 @@ public final class PlayerScore implements Serializable {
         mScore = score;
     }
 
-    public PlayerScore updateScore(int delta) {
-        return new PlayerScore(mName, mScore + delta);
+    public void updateScore(int delta) {
+        mScore += delta;
     }
 
     public int getScore() {

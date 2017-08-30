@@ -24,6 +24,7 @@ public class ScoresActivity extends AppCompatActivity {
 
     private static final int REQUEST_UPDATE_SCORES = 0;
     private List<List<PlayerScore>> mScores;
+    private ScoresAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,8 @@ public class ScoresActivity extends AppCompatActivity {
         GridLayoutManager lm = new GridLayoutManager(this, 3);
         scores.setLayoutManager(lm);
 
-        ScoresAdapter adapter = new ScoresAdapter(getLastRoundScores());
-        scores.setAdapter(adapter);
+        mAdapter = new ScoresAdapter(getLastRoundScores());
+        scores.setAdapter(mAdapter);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add_scores);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +75,16 @@ public class ScoresActivity extends AppCompatActivity {
         updateScores.putExtra(EXTRA_CURRENT_SCORES, (Serializable) getLastRoundScores());
         startActivityForResult(updateScores, REQUEST_UPDATE_SCORES);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == REQUEST_UPDATE_SCORES) {
+            List<PlayerScore> newScores =
+                    (List<PlayerScore>) data.getSerializableExtra(EXTRA_CURRENT_SCORES);
+            mScores.add(newScores);
+            mAdapter.setScoreData(getLastRoundScores());
+        }
+    }
 }
 
 class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoreViewHolder> {
@@ -97,6 +108,11 @@ class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ScoreViewHolder> 
 
     ScoresAdapter(List<PlayerScore> scores) {
         mScores = scores;
+    }
+
+    void setScoreData(List<PlayerScore> scores) {
+        mScores = scores;
+        notifyDataSetChanged();
     }
 
     @Override

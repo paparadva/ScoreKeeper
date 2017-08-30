@@ -16,6 +16,7 @@
         tools:text="Johnny"/>
 
     <LinearLayout
+        android:id="@+id/button_row_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -26,21 +27,24 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/minus_10" />
+            android:text="@string/minus_10"
+            android:tag="-10"/>
 
         <Button
             android:id="@+id/btn_minus_five"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/minus_5"/>
+            android:text="@string/minus_5"
+            android:tag="-5"/>
 
         <Button
             android:id="@+id/btn_minus_one"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/minus_1"/>
+            android:text="@string/minus_1"
+            android:tag="-1"/>
 
         <EditText
             android:id="@+id/et_score_delta"
@@ -55,21 +59,24 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/plus_1"/>
+            android:text="@string/plus_1"
+            android:tag="1"/>
 
         <Button
             android:id="@+id/btn_plus_five"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/plus_5"/>
+            android:text="@string/plus_5"
+            android:tag="5"/>
 
         <Button
             android:id="@+id/btn_plus_ten"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/plus_10"/>
+            android:text="@string/plus_10"
+            android:tag="10"/>
 
     </LinearLayout>
 
