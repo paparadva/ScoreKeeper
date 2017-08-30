@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 public class LauncherActivity extends AppCompatActivity {
     private static final int REQUEST_PLAYER_NUMBER = 0;
-    private static final int REQUEST_PLAYER_NAMES = 0;
+    private static final int REQUEST_PLAYER_NAMES = 1;
 
     public static final String EXTRA_PLAYER_NUMBER = "paparadva.scorekeeper.PLAYER_NUMBER";
 
