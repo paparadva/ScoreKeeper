@@ -1,6 +1,8 @@
 package paparadva.scorekeeper.model;
 
-public final class PlayerScore {
+import java.io.Serializable;
+
+public final class PlayerScore implements Serializable {
     private String mName;
     private int mScore;
 
