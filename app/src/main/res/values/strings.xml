@@ -6,4 +6,5 @@
 
     <string name="title_activity_player_names">Enter players\' names</string>
     <string name="enter_name_label">Player %d</string>
+    <string name="title_activity_scores">Scores</string>
 </resources>
