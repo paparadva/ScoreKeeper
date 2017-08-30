@@ -1,5 +1,6 @@
 package paparadva.scorekeeper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,12 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import paparadva.scorekeeper.model.PlayerScore;
 
 public class ScoresActivity extends AppCompatActivity {
+    public static final String EXTRA_CURRENT_SCORES = "paparadva.scorekeeper.CURRENT_SCORES";
+
+    private static final int REQUEST_UPDATE_SCORES = 0;
     private List<List<PlayerScore>> mScores;
 
     @Override
@@ -43,8 +48,7 @@ public class ScoresActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Update scores", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showUpdateScores();
             }
         });
     }
@@ -63,6 +67,12 @@ public class ScoresActivity extends AppCompatActivity {
         }
 
         return zeroScores;
+    }
+
+    private void showUpdateScores() {
+        Intent updateScores = new Intent(this, UpdateScoresActivity.class);
+        updateScores.putExtra(EXTRA_CURRENT_SCORES, (Serializable) getLastRoundScores());
+        startActivityForResult(updateScores, REQUEST_UPDATE_SCORES);
     }
 }
 
