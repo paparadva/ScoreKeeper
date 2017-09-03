@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,6 +85,24 @@ class UpdateScoresAdapter extends RecyclerView.Adapter<UpdateScoresAdapter.Updat
             nameText = (TextView) view.findViewById(R.id.tv_update_name);
             deltaEdit = (EditText) view.findViewById(R.id.et_score_delta);
             deltaEdit.setText(String.valueOf(scoreDelta));
+            deltaEdit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+                @Override
+                public void afterTextChanged(Editable editable) {}
+
+                @Override
+                public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                    if(s.length() == 0) {
+                        scoreDelta = 0;
+                    } else {
+                        scoreDelta = Integer.parseInt(s.toString());
+                    }
+
+                    UpdateScoresAdapter.this.mDeltas.set(position, scoreDelta);
+                }
+            });
 
             // Set this ViewHolder as ClickListener for all Buttons
             ViewGroup buttonContainer = (ViewGroup) view.findViewById(R.id.button_row_layout);
@@ -102,9 +122,7 @@ class UpdateScoresAdapter extends RecyclerView.Adapter<UpdateScoresAdapter.Updat
         @Override
         public void onClick(View v) {
             int delta = Integer.parseInt((String)v.getTag());
-            scoreDelta += delta;
-            deltaEdit.setText(String.valueOf(scoreDelta));
-            UpdateScoresAdapter.this.mDeltas.set(position, scoreDelta);
+            deltaEdit.setText(String.valueOf(scoreDelta + delta));
         }
     }
 
