@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_enter_name_label"
-        android:labelFor="@+id/et_player_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
-        style="@style/TextAppearance.AppCompat.Medium"
-        tools:text="Player 1"
-        />
-
-    <EditText
-        android:id="@+id/et_player_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:inputType="textPersonName"
-        android:ems="8"/>
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_enter_name_label"
+            android:labelFor="@+id/et_player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Medium"
+            tools:text="Player 1: "
+            />
+
+        <EditText
+            android:id="@+id/et_player_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="6"/>
+
+    </LinearLayout>
+
+</FrameLayout>
