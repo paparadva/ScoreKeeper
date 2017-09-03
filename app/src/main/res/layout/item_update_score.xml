@@ -51,7 +51,7 @@
             android:layout_width="@dimen/score_delta_width"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:inputType="number"
+            android:inputType="numberSigned"
             tools:text="-35"/>
 
         <Button
