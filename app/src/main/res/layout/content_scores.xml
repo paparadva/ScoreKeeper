@@ -13,7 +13,7 @@
         android:id="@+id/rv_current_scores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/currentScores"/>
+        android:background="@color/darkerBackground"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_scores"
