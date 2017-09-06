@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -38,9 +39,7 @@ public class ScoresActivity extends AppCompatActivity {
 
         RecyclerView scores = (RecyclerView) findViewById(R.id.rv_current_scores);
         scores.setHasFixedSize(true);
-
-        GridLayoutManager lm = new GridLayoutManager(this, 3);
-        scores.setLayoutManager(lm);
+        scores.setLayoutManager(new LinearLayoutManager(this));
 
         mAdapter = new ScoresAdapter(getLastRoundScores());
         scores.setAdapter(mAdapter);
