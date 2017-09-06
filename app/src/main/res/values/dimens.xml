@@ -1,4 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="fab_margin_double">32dp</dimen>
     <dimen name="score_delta_width">70dp</dimen>
+    <dimen name="score_item_width">180dp</dimen>
+    <dimen name="name_score_gap">40dp</dimen>
 </resources>

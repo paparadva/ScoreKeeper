@@ -9,18 +9,29 @@
     tools:context="paparadva.scorekeeper.ScoresActivity"
     tools:showIn="@layout/activity_scores">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_current_scores"
+    <FrameLayout
+        android:id="@+id/layout_scores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/currentScores"/>
+        android:background="@color/darkerBackground"
+        android:paddingBottom="@dimen/fab_margin_double">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_current_scores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </FrameLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add_scores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_dialog_email"
-        app:layout_anchor="@id/rv_current_scores"
+        app:layout_anchor="@id/layout_scores"
         app:layout_anchorGravity="bottom|right|end"
         android:layout_margin="@dimen/fab_margin"/>
 

@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -44,14 +46,6 @@ public class PlayerNamesActivity extends AppCompatActivity {
 
         mAdapter = new PlayerNamesAdapter(mPlayerNumber, getString(R.string.enter_name_label));
         mNameInputs.setAdapter(mAdapter);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finishWithResult();
-            }
-        });
     }
 
     private void finishWithResult() {
@@ -64,6 +58,19 @@ public class PlayerNamesActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.menu_accept) {
+            finishWithResult();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.acceptmenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 }
 
 class PlayerNamesAdapter extends RecyclerView.Adapter<PlayerNamesAdapter.NameInputViewHolder> {

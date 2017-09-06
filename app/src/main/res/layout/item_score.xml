@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="@dimen/score_item_width"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="14dp">
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="start"
         tools:text="Jeorge"
+        android:textAllCaps="true"
+        android:textColor="@color/primaryColor"
         style="@style/TextAppearance.AppCompat.Medium"/>
 
     <TextView
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        tools:text="300"
+        android:layout_gravity="end"
+        tools:text="1200"
         style="@style/TextAppearance.AppCompat.Medium"/>
 
-</LinearLayout>
+</FrameLayout>

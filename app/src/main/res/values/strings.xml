@@ -5,7 +5,7 @@
     <string name="negative_number_of_players_error">Wrong number of players</string>
 
     <string name="title_activity_player_names">Enter players\' names</string>
-    <string name="enter_name_label">Player %d</string>
+    <string name="enter_name_label">Player %d: </string>
     <string name="title_activity_scores">Scores</string>
 
     <string name="title_activity_update_scores">Change scores</string>
