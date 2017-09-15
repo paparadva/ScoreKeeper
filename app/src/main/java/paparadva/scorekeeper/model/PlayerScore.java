@@ -3,24 +3,37 @@ package paparadva.scorekeeper.model;
 import java.io.Serializable;
 
 public final class PlayerScore implements Serializable {
-    private String mName;
-    private int mScore;
+    private String name;
+    private int score;
 
-    public PlayerScore(String playerName, int score) {
-        mName = playerName;
-        mScore = score;
+    public PlayerScore() {
+        this.name = "";
+        this.score = 0;
+    }
+
+    public PlayerScore(String name, int score) {
+        this.name = name;
+        this.score = score;
     }
 
     public void updateScore(int delta) {
-        mScore += delta;
+        score += delta;
     }
 
     public int getScore() {
-        return mScore;
+        return score;
     }
 
     public String getName() {
-        return mName;
+        return name;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -30,15 +43,15 @@ public final class PlayerScore implements Serializable {
 
         PlayerScore that = (PlayerScore) o;
 
-        if (mScore != that.mScore) return false;
-        return mName.equals(that.mName);
+        if (score != that.score) return false;
+        return name.equals(that.name);
 
     }
 
     @Override
     public int hashCode() {
-        int result = mName.hashCode();
-        result = 31 * result + mScore;
+        int result = name.hashCode();
+        result = 31 * result + score;
         return result;
     }
 }

@@ -9,16 +9,27 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.owlike.genson.GenericType;
+import com.owlike.genson.Genson;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import paparadva.scorekeeper.model.PlayerScore;
+import paparadva.scorekeeper.util.StorageUtils;
 
 public class ScoresActivity extends AppCompatActivity {
     public static final String EXTRA_CURRENT_SCORES = "paparadva.scorekeeper.CURRENT_SCORES";
@@ -34,8 +45,12 @@ public class ScoresActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mScores = new ArrayList<>();
-        mScores.add(createInitialScores());
+        mScores = StorageUtils.loadData(this);
+        if(mScores == null) {
+            mScores = new ArrayList<>();
+            mScores.add(createInitialScores());
+            StorageUtils.saveData(this, mScores);
+        }
 
         RecyclerView scores = (RecyclerView) findViewById(R.id.rv_current_scores);
         scores.setHasFixedSize(true);
@@ -82,6 +97,7 @@ public class ScoresActivity extends AppCompatActivity {
                     (List<PlayerScore>) data.getSerializableExtra(EXTRA_CURRENT_SCORES);
             mScores.add(newScores);
             mAdapter.setScoreData(getLastRoundScores());
+            StorageUtils.saveData(this, mScores);
         }
     }
 }

@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import paparadva.scorekeeper.util.StorageUtils;
+
 public class LauncherActivity extends AppCompatActivity {
     private static final String TAG = LauncherActivity.class.getSimpleName();
 
@@ -22,8 +24,15 @@ public class LauncherActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        Intent getPlayerNum = new Intent(this, PlayerNumberActivity.class);
-        startActivityForResult(getPlayerNum, REQUEST_PLAYER_NUMBER);
+        if(StorageUtils.loadData(this) != null) {
+            Intent startScores = new Intent(this, ScoresActivity.class);
+            startActivity(startScores);
+            finish();
+        } else {
+            Intent getPlayerNum = new Intent(this, PlayerNumberActivity.class);
+            startActivityForResult(getPlayerNum, REQUEST_PLAYER_NUMBER);
+        }
+
     }
 
     @Override
