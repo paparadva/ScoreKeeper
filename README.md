@@ -1,2 +1,2 @@
 # ScoreKeeper
-Use this app to keep track of scores during a game.
+Android app to keep score in different kinds of games
