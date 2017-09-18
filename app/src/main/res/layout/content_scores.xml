@@ -30,7 +30,7 @@
         android:id="@+id/fab_add_scores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_dialog_email"
+        app:srcCompat="@drawable/ic_add_white_24dp"
         app:layout_anchor="@id/layout_scores"
         app:layout_anchorGravity="bottom|right|end"
         android:layout_margin="@dimen/fab_margin"/>
