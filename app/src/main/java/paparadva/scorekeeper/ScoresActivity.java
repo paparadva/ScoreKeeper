@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -99,6 +101,23 @@ public class ScoresActivity extends AppCompatActivity {
             mAdapter.setScoreData(getLastRoundScores());
             StorageUtils.saveData(this, mScores);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.menu_newgame) {
+            Intent reLaunch = new Intent(this, LauncherActivity.class);
+            if(!StorageUtils.deleteData(this)) Log.d("SCORES", "file was not deleted");
+            startActivity(reLaunch);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.scoresmenu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
 

@@ -7,11 +7,13 @@ import com.owlike.genson.GenericType;
 import com.owlike.genson.Genson;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 import java.util.List;
 
 import paparadva.scorekeeper.LauncherActivity;
@@ -45,6 +47,12 @@ public final class StorageUtils {
             Log.d("loadData", e.toString());
             return null;
         }
+    }
+
+    public static boolean deleteData(Context context) {
+        File dir = context.getFilesDir();
+        File session = new File(dir, SESSION_FILENAME);
+        return session.delete();
     }
 
     public static void saveData(Context context, List<List<PlayerScore>> scoreData) {
